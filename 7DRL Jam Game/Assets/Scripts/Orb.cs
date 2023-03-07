@@ -5,7 +5,7 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     public GameObject player;
-    public float rotateSpeed = 100;
+    private GameObject orbSlotParent;
     public float shotSpeed = 25.0f;
     Vector3 moveDir;
     private bool orbReleased = false;
@@ -15,6 +15,7 @@ public class Orb : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        orbSlotParent = gameObject.transform.parent.gameObject;
     }
     // Update is called once per frame
     void Update()
@@ -23,11 +24,13 @@ public class Orb : MonoBehaviour
         {
             transform.Translate(moveDir * shotSpeed * Time.deltaTime);
         }
-        else
-        {
-            transform.RotateAround(player.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
-        }
         
+    }
+
+    private IEnumerator orbLifeTime()
+    {
+        yield return new WaitForSeconds(3.0f);
+        dissipateOrb();
     }
 
 
@@ -39,8 +42,9 @@ public class Orb : MonoBehaviour
         transform.rotation = Quaternion.identity;
         moveDir = new Vector3(mousePos.x - transform.position.x, mousePos.y - transform.position.y, 0.0f).normalized;
 
-        
-        transform.SetParent(null);
+     
+        transform.SetParent(null); // Detach from the orbslot
+        StartCoroutine(orbLifeTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +53,14 @@ public class Orb : MonoBehaviour
         if(orbReleased && collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(orbDamage);
-            Destroy(gameObject);
+            dissipateOrb();
         }
+    }
+
+    private void dissipateOrb()
+    {
+        StartCoroutine(orbSlotParent.GetComponent<OrbSlot>().regenOrb(gameObject));
+        //gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }
