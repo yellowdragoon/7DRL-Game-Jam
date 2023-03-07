@@ -10,10 +10,14 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool hit = false;
     public GameObject orbSlotPrefab;
+    private Animator animator;
+
+    private bool facingRight = true;
 
     private void Start()
     {
         //orbSlotPrefab = GameObject.FindGameObjectWithTag("OrbSlot");
+        animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         createSlots(5);
     }    
@@ -26,13 +30,7 @@ public class Player : MonoBehaviour
 
         moveInput = new Vector2(inputX, inputY);
 
-        /*
-        if(!hit)
-        {
-            transform.Translate(movement);
-        }
-        */
-        
+        animator.SetFloat("moveSpeed", moveInput.magnitude);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -46,6 +44,8 @@ public class Player : MonoBehaviour
         if (!hit)
         {
             rb.AddForce(moveInput * moveSpeed * Time.fixedDeltaTime);
+            if (moveInput.x > 0 && !facingRight) flipPlayer();
+            else if (moveInput.x < 0 && facingRight) flipPlayer();
         }
     }
 
@@ -103,5 +103,15 @@ public class Player : MonoBehaviour
             GameObject newSlot = Instantiate(orbSlotPrefab);
             newSlot.GetComponent<OrbSlot>().setRotation(i * (360.0f/(float)numSlots));
         }
+    }
+
+    private void flipPlayer()
+    {
+        facingRight = !facingRight;
+
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
