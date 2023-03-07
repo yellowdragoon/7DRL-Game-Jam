@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 speed = new Vector2(50, 50);
+    public Vector2 moveInput;
+    public float moveSpeed = 10000.0f;
     public int health = 100;
     private Rigidbody2D rb;
     private bool hit = false;
@@ -23,20 +24,28 @@ public class Player : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(speed.x * inputX, speed.y * inputY, 0);
+        moveInput = new Vector2(inputX, inputY);
 
-        movement *= Time.deltaTime;
-
+        /*
         if(!hit)
         {
             transform.Translate(movement);
         }
+        */
         
 
         if (Input.GetMouseButtonDown(0))
         {
             GameObject orb = findClosestOrb();
             if(orb != null) orb.GetComponent<Orb>().releaseOrb();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!hit)
+        {
+            rb.AddForce(moveInput * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -49,12 +58,15 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int amount, GameObject source, float knockBack)
     {
-        hit = true;
-        StartCoroutine(dmgFrames());
-        health -= amount;
-        Vector2 knockbackDir = (transform.position - source.transform.position).normalized;
-        rb.AddForce(knockbackDir * knockBack, ForceMode2D.Impulse);
-        if (health <= 0) die();
+        if (!hit)
+        {
+            StartCoroutine(dmgFrames());
+            health -= amount;
+            Vector2 knockbackDir = (transform.position - source.transform.position).normalized;
+            rb.AddForce(knockbackDir * knockBack, ForceMode2D.Impulse);
+            if (health <= 0) die();
+        }
+        hit = true;  
     }
 
 
