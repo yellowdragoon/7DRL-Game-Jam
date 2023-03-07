@@ -6,6 +6,13 @@ using Random = UnityEngine.Random;
 
 public class TilemapGen : MonoBehaviour
 {
+    [SerializeField] private Tilemap map;
+    [SerializeField] private TileBase floorTile;
+    [SerializeField] private TileBase wallTile;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {

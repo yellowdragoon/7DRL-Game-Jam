@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class CellularAutomata
 {
-    enum Cell
+    public enum Cell
     {
         Wall,
         Floor
@@ -50,7 +50,7 @@ public class CellularAutomata
 
     }
 
-    void Fill()
+    public void Fill()
     {
         for (int i = 0; i < sizeX; i++)
         {
@@ -62,7 +62,7 @@ public class CellularAutomata
     }
 
     // rule of form (prev, countFloor) -> new
-    void Step(Func<Cell, int, int, Cell> rule)
+    public void Step(Func<Cell, int, int, Cell> rule)
     {
         Cell[,] tmp = new Cell[sizeX, sizeY];
         for (int i = 0; i < sizeX; i++)
@@ -98,7 +98,7 @@ public class CellularAutomata
         map = tmp;
     }
 
-    void PrintMap()
+    public void PrintMap()
     {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < map.GetLength(0); i++)
