@@ -17,13 +17,15 @@ public class TilemapGen : MonoBehaviour
     void Start()
     {
 
-        Debug.Log("TilemapGen started");
         //Tilemap tm = GetComponentInChildren<Tilemap>();
         //tm.SetTile(new Vector3Int(0, 0, 0), (Tile)Resources.Load("Sprites/image_17", typeof(Tile)));
         //tm.SetTile(new Vector3Int(0, 1, 0), (Tile)Resources.Load("image_43", typeof(Tile)));
         //tm.RefreshAllTiles();
 
-        CellularAutomata.Main();
+        var map = CellularAutomata.Generate();
+        Debug.Log("Map generated");
+        CellularAutomata.PrintMap(map);
+        Debug.Log(Cell.printChars[map[0, 0]]);
     }
 
 
