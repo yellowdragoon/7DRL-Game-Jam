@@ -5,47 +5,45 @@ using System.Text;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public class CellularAutomata
+public class CellularAutomata : MapGen
 {
-    const int sizeX = 80;
-    const int sizeY = 100;
-    const double startChance = 0.30; // chance of wall
+    [SerializeField] private int width = 80;
+    [SerializeField] private int height = 100;
+    [SerializeField] private double startChance = 0.30; // chance of wall
 
     Cell.Type[,] map;
 
-    public static Cell.Type[,] Generate()
+    void Awake()
     {
-        var c = new CellularAutomata();
-        Debug.Log("in cellular automata");
-        c.Fill();
-        PrintMap(c.map);
+        map = new Cell.Type[width, height];
+    }
+
+    public override Cell.Type[,] Generate()
+    {
+        //Debug.Log("in cellular automata");
+        Fill();
+        //PrintMap(c.map);
 
         for (int i = 0; i < 4; i++)
         {
             //c.Step((prev, countFloor1, countFloor2) => ((prev==Cell.Wall ? countFloor1 <= 5 : countFloor1 <= 4) ? Cell.Wall : Cell.Floor));
-            c.Step((prev, countFloor1, countFloor2) => (countFloor1 <= 4 || countFloor2 >= 19 ? Cell.Type.Wall : Cell.Type.Floor));
+            Step((prev, countFloor1, countFloor2) => (countFloor1 <= 4 || countFloor2 >= 19 ? Cell.Type.Wall : Cell.Type.Floor));
             //PrintMap(c.map);
         }
         for (int i = 0; i < 3; i++)
-            c.Step((prev, countFloor1, countFloor2) => (countFloor1 < 5 ? Cell.Type.Wall : Cell.Type.Floor));
+            Step((prev, countFloor1, countFloor2) => (countFloor1 < 5 ? Cell.Type.Wall : Cell.Type.Floor));
         //PrintMap(c.map);
 
-        return c.map;
+        return map;
     }
 
-
-    CellularAutomata()
+    void Fill()
     {
-        map = new Cell.Type[sizeX, sizeY];
-
-    }
-
-    public void Fill()
-    {
-        for (int i = 0; i < sizeX; i++)
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < sizeY; j++)
+            for (int j = 0; j < height; j++)
             {
+                Debug.Log($"{i} {j} {width} {height}");
                 map[i, j] = Random.value < startChance ? Cell.Type.Wall : Cell.Type.Floor;
             }
         }
@@ -54,10 +52,10 @@ public class CellularAutomata
     // rule of form (prev, countFloor) -> new
     void Step(Func<Cell.Type, int, int, Cell.Type> rule)
     {
-        Cell.Type[,] tmp = new Cell.Type[sizeX, sizeY];
-        for (int i = 0; i < sizeX; i++)
+        Cell.Type[,] tmp = new Cell.Type[width, height];
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < sizeY; j++)
+            for (int j = 0; j < height; j++)
             {
                 // count neighbouring floors - so stuff outside borders will be considered walls by default
                 int countFloor1 = 0;
@@ -66,7 +64,7 @@ public class CellularAutomata
                 {
                     for (int jj = -2; jj <= 2; jj++)
                     {
-                        if ((ii == 0 && jj == 0) || i + ii < 0 || i + ii >= sizeX || j + jj >= sizeY || j + jj < 0) 
+                        if ((ii == 0 && jj == 0) || i + ii < 0 || i + ii >= width || j + jj >= height || j + jj < 0) 
                         {
                             continue;
                         }
@@ -83,19 +81,5 @@ public class CellularAutomata
             }
         }
         map = tmp;
-    }
-
-    public static void PrintMap(Cell.Type[,] m)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < m.GetLength(0); i++)
-        {
-            for (int j = 0; j < m.GetLength(1); j++)
-            {
-                sb.Append(Cell.printChars[m[i, j]]);
-            }
-            sb.Append("\n");
-        }
-        Debug.Log(sb.ToString());
     }
 }

@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         {
             Orb orb = orbSlot.GetComponentInChildren<Orb>();
             if (!orb) continue;
-            float dist = Vector2.Distance(orb.gameObject.transform.position, Input.mousePosition);
+            float dist = Vector2.Distance(Camera.main.WorldToScreenPoint(orb.gameObject.transform.position), Input.mousePosition);
             if (dist < closestDist)
             {
                 closest = orb.gameObject;

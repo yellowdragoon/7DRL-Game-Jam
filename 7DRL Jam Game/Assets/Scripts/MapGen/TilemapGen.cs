@@ -1,23 +1,25 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class TilemapGen : MonoBehaviour
 {
-    [SerializeField] private Tilemap tileMap;
+    private Tilemap tileMap;
     [SerializeField] private TileBase floorTile;
     [SerializeField] private TileBase wallTile;
+    [SerializeField] private Component generator;
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        tileMap = GetComponentInChildren<Tilemap>();
 
-        var map = CellularAutomata.Generate();
-        Debug.Log("Map generated");
-        CellularAutomata.PrintMap(map);
-        Debug.Log(Cell.printChars[map[0, 0]]);
+        var map = ((MapGen) generator).Generate();
+        //Debug.Log("Map generated");
+        MapGen.PrintMap(map);
 
         for (int i = 0; i < map.GetLength(0); i++)
         {
