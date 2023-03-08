@@ -2790,21 +2790,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 8071006015398881082, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8071006015398881084, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8071006015398881084, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5472
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8071006015398881084, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7302
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 8071006015398881084, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2837,6 +2833,10 @@ PrefabInstance:
     - target: {fileID: 8071006015398881084, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071006015398881085, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
+      propertyPath: minDistPlayer
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
