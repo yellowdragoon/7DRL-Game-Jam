@@ -2397,9 +2397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c140edcb1e82e43b128fcb75a76d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 387946982}
-  floorTile: {fileID: 11400000, guid: b878489b62da74640a7964d452a73adc, type: 2}
-  wallTile: {fileID: 0}
+  tileMap: {fileID: 387946982}
+  floorTile: {fileID: 11400000, guid: f63a67f29a837074cbd6633aac25b443, type: 2}
+  wallTile: {fileID: 11400000, guid: 9cdc87cab24253745847f29f1259192c, type: 2}
 --- !u!4 &476924292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1825076308631300561, guid: 60b659be9c12e3a408e2e230a872a75f, type: 3}
@@ -2771,7 +2771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135775462264952158, guid: 60b659be9c12e3a408e2e230a872a75f, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8135775462264952158, guid: 60b659be9c12e3a408e2e230a872a75f, type: 3}
       propertyPath: m_SortingLayerID
