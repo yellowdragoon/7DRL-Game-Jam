@@ -6,11 +6,13 @@ public class Player : MonoBehaviour
 {
     public Vector2 moveInput;
     public float moveSpeed = 10000.0f;
-    public int health = 100;
+    public int maxHealth = 100;
+    public int health;
     private Rigidbody2D rb;
     private bool hit = false;
     public GameObject orbSlotPrefab;
     private Animator animator;
+    [SerializeField] private HealthBar healthBar;
 
     private bool facingRight = true;
 
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour
         //orbSlotPrefab = GameObject.FindGameObjectWithTag("OrbSlot");
         animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        healthBar.SetMaxHealth(maxHealth);
+        health = maxHealth;
         createSlots(5);
     }    
 
@@ -62,6 +66,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(dmgFrames());
             health -= amount;
+            healthBar.SetHealth(Mathf.Max(0, health));
             Vector2 knockbackDir = (transform.position - source.transform.position).normalized;
             rb.AddForce(knockbackDir * knockBack, ForceMode2D.Impulse);
             if (health <= 0) die();
