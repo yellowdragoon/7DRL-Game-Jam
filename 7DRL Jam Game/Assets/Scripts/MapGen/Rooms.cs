@@ -7,25 +7,20 @@ public class Rooms : MapGen
     [SerializeField] private int width = 100;
     [SerializeField] private int height = 100;
 
-    [SerializeField] private int minWidth = 20;
-    [SerializeField] private int minHeight = 20;
 
-    [SerializeField] private int levels = 3;
+    [SerializeField] private int roomPad = 1;
 
+    [SerializeField] private int minRoomWidth = 9;
+    [SerializeField] private int minRoomHeight = 9;
+
+    [SerializeField] private int minPartitionWidth = 20;
+    [SerializeField] private int minPartitionHeight = 20;
+
+
+    [SerializeField] private double splitOrientationForceThreshold = 1.25;
     [SerializeField] private double horizontalChance = 0.50;
-    [SerializeField] private double splitMin = 0.40;
-    [SerializeField] private double splitMax = 0.60;
 
 
-    private class Node
-    {
-        public bool splitHorizontally;
-        public Node left;
-        public Node right;
-        public bool isLeaf;
-        public int x0, x1, y0, y1;
-
-    }
 
     public override Cell.Type[,] Generate()
     {
@@ -33,7 +28,9 @@ public class Rooms : MapGen
         var map = new int[width, height];
         Fill(map, 0);
 
-        Node root = Build(map, 0, 0, 0, width, height);
+        Node root = new Node(0, 0, width, height);
+        Split(root);
+        BuildRoom(map, root);
 
 
         var result = new Cell.Type[width, height];
@@ -47,46 +44,69 @@ public class Rooms : MapGen
         return result;
     }
 
-    Node Build(int[,] map, int depth, int x0, int y0, int x1, int y1)
+    private class Node
     {
-        var root = new Node { x0=x0, y0=y0, x1=x1, y1=y1 };
-        if (x1-x0 < minWidth || y1-y0 < minHeight)
+        public Node left;
+        public Node right;
+        public int x, y, w, h;
+        public Node(int _x, int _y, int _w, int _h)
         {
-            return null;
+            x = _x;
+            y = _y;
+            w = _w;
+            h = _h;
         }
+    }
 
-        if (depth == levels)
+    private void Split(Node root)
+    {
+        // randomly choose split direction unless the area is too thin/wide
+        bool splitHorizontally = Random.value < horizontalChance;
+        if (root.w > root.h && (double)root.w / root.h > splitOrientationForceThreshold)
+            splitHorizontally = false;
+        else if (root.h > root.w && (double)root.h / root.w > splitOrientationForceThreshold)
+            splitHorizontally = true;
+
+        if (splitHorizontally)
         {
-            root.isLeaf = true;
-            var rw = Random.Range(minWidth, x1 - x0);
-            var rh = Random.Range(minHeight, y1 - y0);
-
-            var rx = Random.Range(x0, x1 - rw - 1);
-            var ry = Random.Range(y0, y1 - rh - 1);
-
-            Debug.Log($"{rw} {rh} {rx} {ry}");
-            Fill(map, 1, rx, ry, rx+rw, ry+rh);
-            return root;
-        }
-
-        if (Random.value < horizontalChance)
-        {
-            root.splitHorizontally = true;
-            var p = Lerp(Random.value, splitMin, splitMax);
-            var mid = Lerp(p, x0, x1);
-            root.left = Build(map, depth + 1, x0, y0, mid, y1);
-            root.right = Build(map, depth + 1, mid, y0, x1, y1);
+            var max = root.h - minPartitionHeight;
+            if (max <= minPartitionHeight) return; // too small to split
+            var split = Random.Range(minPartitionHeight, max);
+            root.left = new Node(root.x, root.y, root.w, split);
+            root.right = new Node(root.x, root.y+split, root.w, root.h-split);
         }
         else
         {
-            root.splitHorizontally = false;
-            var p = Lerp(Random.value, splitMin, splitMax);
-            var mid = Lerp(p, y0, y1);
-            root.left = Build(map, depth + 1, x0, y0, x1, mid);
-            root.right = Build(map, depth + 1, x0, mid, x1, y1);
+            var max = root.w - minPartitionWidth;
+            if (max <= minPartitionWidth) return; // too small to split
+            var split = Random.Range(minPartitionWidth, max);
+            root.left = new Node(root.x, root.y, split, root.h);
+            root.right = new Node(root.x + split, root.y, root.w-split, root.h);
         }
-        return root;
+        Split(root.left);
+        Split(root.right);
     }
+
+    private void BuildRoom(int[,] map, Node root)
+    {
+        if (root.left != null)
+            BuildRoom(map, root.left);
+        if (root.right != null)
+            BuildRoom(map, root.right);
+
+        if (root.left == null && root.right == null)
+        {
+            var w = Random.Range(minRoomWidth, root.w - roomPad * 2);
+            var h = Random.Range(minRoomHeight, root.h - roomPad * 2);
+            var x = root.x + Random.Range(roomPad, root.w - roomPad - w);
+            var y = root.y + Random.Range(roomPad, root.h - roomPad - h);
+
+            Fill(map, 1, x, y, x + w, y + h);
+        }
+    }
+
+
+
 
     void Fill(int[,] m, int val)
     {
