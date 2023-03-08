@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 387946982}
   - component: {fileID: 387946981}
   - component: {fileID: 387946983}
+  - component: {fileID: 387946984}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -2397,9 +2398,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c140edcb1e82e43b128fcb75a76d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap: {fileID: 387946982}
   floorTile: {fileID: 11400000, guid: f63a67f29a837074cbd6633aac25b443, type: 2}
   wallTile: {fileID: 11400000, guid: db1d61b39ca9e0741b1bdea8f40f0e64, type: 2}
+  generator: {fileID: 387946984}
+--- !u!114 &387946984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387946979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827ebc0cc3d6a3488f1e4708797e18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 100
+  height: 100
+  startChance: 0.3
 --- !u!4 &476924292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1825076308631300561, guid: 60b659be9c12e3a408e2e230a872a75f, type: 3}
