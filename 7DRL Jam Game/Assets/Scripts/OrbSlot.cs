@@ -38,7 +38,8 @@ public class OrbSlot : MonoBehaviour
         GameObject newOrb = Instantiate(orbChild);
         newOrb.transform.SetParent(transform);
         newOrb.transform.SetLocalPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
-        newOrb.transform.localScale = new Vector3(1, 1, 1);
+
+        newOrb.transform.localScale = orbChild.transform.localScale;
         Debug.Log("Orb regened!");
         Destroy(oldOrb);
     }

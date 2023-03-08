@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 10
   moveSpeed: 5
   damageDealt: 10
-  minDistPlayer: 0.5
+  minDistPlayer: 0.1
   knockBackDealt: 25
 --- !u!61 &8071006015398881086
 BoxCollider2D:
