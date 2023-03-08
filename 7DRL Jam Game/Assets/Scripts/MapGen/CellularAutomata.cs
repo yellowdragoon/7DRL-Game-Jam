@@ -20,19 +20,15 @@ public class CellularAutomata : MapGen
 
     public override Cell.Type[,] Generate()
     {
-        //Debug.Log("in cellular automata");
         Fill();
-        //PrintMap(c.map);
 
         for (int i = 0; i < 4; i++)
         {
             //c.Step((prev, countFloor1, countFloor2) => ((prev==Cell.Wall ? countFloor1 <= 5 : countFloor1 <= 4) ? Cell.Wall : Cell.Floor));
             Step((prev, countFloor1, countFloor2) => (countFloor1 <= 4 || countFloor2 >= 19 ? Cell.Type.Wall : Cell.Type.Floor));
-            //PrintMap(c.map);
         }
         for (int i = 0; i < 3; i++)
             Step((prev, countFloor1, countFloor2) => (countFloor1 < 5 ? Cell.Type.Wall : Cell.Type.Floor));
-        //PrintMap(c.map);
 
         return map;
     }
@@ -43,13 +39,12 @@ public class CellularAutomata : MapGen
         {
             for (int j = 0; j < height; j++)
             {
-                Debug.Log($"{i} {j} {width} {height}");
                 map[i, j] = Random.value < startChance ? Cell.Type.Wall : Cell.Type.Floor;
             }
         }
     }
 
-    // rule of form (prev, countFloor) -> new
+    // rule of form (prev, countFloor1, countFloor2) -> new
     void Step(Func<Cell.Type, int, int, Cell.Type> rule)
     {
         Cell.Type[,] tmp = new Cell.Type[width, height];
