@@ -8,7 +8,10 @@ public class OrbSlot : MonoBehaviour
     public GameObject orbChild;
     public float rotateSpeed = 10f;
     private float currentRotation = 0.0f;
-    private float radius = 3.0f;
+    [SerializeField] private float xRadius = 3.0f;
+    [SerializeField] private float yRadius = 3.0f;
+    [SerializeField] private float xOffset = 0.0f;
+    [SerializeField] private float yOffset = 0.0f;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -19,8 +22,8 @@ public class OrbSlot : MonoBehaviour
     {
         currentRotation += rotateSpeed;
         if (currentRotation >= 360) currentRotation -= 360;
-        float newX = player.transform.position.x + (radius * Mathf.Cos(currentRotation * Mathf.Deg2Rad));
-        float newY = player.transform.position.y + (radius * Mathf.Sin(currentRotation * Mathf.Deg2Rad));
+        float newX = player.transform.position.x + xOffset + (xRadius * Mathf.Cos(currentRotation * Mathf.Deg2Rad));
+        float newY = player.transform.position.y + yOffset + (yRadius * Mathf.Sin(currentRotation * Mathf.Deg2Rad));
         transform.position = new Vector2(newX, newY);
     }
 

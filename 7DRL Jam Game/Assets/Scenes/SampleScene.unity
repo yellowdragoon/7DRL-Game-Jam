@@ -2399,7 +2399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 387946982}
   floorTile: {fileID: 11400000, guid: f63a67f29a837074cbd6633aac25b443, type: 2}
-  wallTile: {fileID: 11400000, guid: 9cdc87cab24253745847f29f1259192c, type: 2}
+  wallTile: {fileID: 11400000, guid: db1d61b39ca9e0741b1bdea8f40f0e64, type: 2}
 --- !u!4 &476924292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1825076308631300561, guid: 60b659be9c12e3a408e2e230a872a75f, type: 3}
