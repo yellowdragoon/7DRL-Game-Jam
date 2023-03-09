@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f40e1ace-da52-4791-9db0-b14bf7caf862}">
+		<property name="color">
+			<value>Blue</value>
+		</property>
+		<property name="assetPath">
+			<value>Xylomarimba.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>40.799999999999997</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3901549f-b226-49ec-8418-15f6476b5c98}</destination>
+		</relationship>
+	</object>
+</objects>
