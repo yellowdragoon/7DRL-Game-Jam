@@ -10,7 +10,9 @@ public class Enemy : MonoBehaviour
     public int damageDealt = 10;
     public float minDistPlayer = 0.1f;
     public float knockBackDealt = 30.0f;
+    public float aggroRange = 20.0f;
     GameObject player;
+    EnemyPathfinding pathfinding;
 
     private bool attacking = false;
     Animator animator;
@@ -19,22 +21,31 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        pathfinding = GetComponent<EnemyPathfinding>();
     }
     // Update is called once per frame
     void Update()
     {
+        checkAggro();
         animator.SetBool("attacking", attacking);
 
         if (!attacking)
         {
-            float step = moveSpeed * Time.deltaTime;
             if (Vector3.Distance(transform.position, player.transform.position) >= minDistPlayer)
             {
                 Vector3 newScale = transform.localScale;
                 newScale.x = transform.position.x > player.transform.position.x ? -1 : 1 ;
                 transform.localScale = newScale;
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+                //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             }
+        }
+    }
+
+    private void checkAggro()
+    {
+        if(Vector2.Distance(player.transform.position, transform.position) < aggroRange)
+        {
+            pathfinding.gainAggro();
         }
     }
 

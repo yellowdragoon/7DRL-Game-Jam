@@ -17,6 +17,7 @@ public class TilemapGen : MonoBehaviour
     [SerializeField] private TileBase wallTopsTile;
 
     [SerializeField] private Component generator;
+    [SerializeField] private NavMeshManager navManager;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,7 @@ public class TilemapGen : MonoBehaviour
         floorTilemap.RefreshAllTiles();
         wallTilemap.RefreshAllTiles();
         wallTopsTilemap.RefreshAllTiles();
+        navManager.updateNavMesh();
     }
 
 }
