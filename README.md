@@ -20,7 +20,7 @@ It should also be noted that these parameters are not mutually exclusive: for in
 Not every parameter needs to be used, and more can be added or existing ones (such as Progress) edited upon request.
 
 ### Boss Theme - War of the Hero
-This music has yet to be implemented, however this music will not be adaptive and will simply come in when the player encounters a boss, looping until the boss has been defeated.
+The Boss Music Game Object has been added which will start upon a prompt that needs to be added by the programmer (such as encountering a boss). This music loops forever unless a stop condition is activated (such as defeating the boss), which will need to be implemented. This music is not adaptive.
 
 ### Title Theme - Lorem Ipsum
 This music has yet to be written, however this music will not be adaptive and will simply play on the title screen of the game, looping until the game is started.
