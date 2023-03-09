@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         health = maxHealth;
         createSlots(5);
+        // make sure only the feet collide with the walls - the hitbox won't fit through corridors
+        Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), GameObject.FindGameObjectWithTag("WallTilemap").GetComponent<Collider2D>());
     }    
 
    
