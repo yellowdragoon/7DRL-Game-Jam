@@ -426,8 +426,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FMODAssets/DungeonTheme/DungeonTheme.fspro
-  sourceBankPath: FMODAssets/DungeonTheme/Build
+  sourceProjectPath: FMODAssets/Background Music/BackgroundMusic.fspro
+  sourceBankPath: FMODAssets/Background Music/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
