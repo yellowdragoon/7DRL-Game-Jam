@@ -9,6 +9,8 @@ public class Rooms : MapGen
     [SerializeField] private int width = 100;
     [SerializeField] private int height = 100;
 
+    [SerializeField] private int outputPad = 20;
+
 
     [SerializeField] private int roomPad = 1;
 
@@ -36,17 +38,20 @@ public class Rooms : MapGen
         BuildRoom(map, corridorMap, root);
 
 
-        var result = new Cell.Type[width, height];
+        var result = new Cell.Type[width + 2 * outputPad, height + 2 * outputPad]; // defaults to all walls
         for (int i = 0; i < map.GetLength(0); i++)
         {
             for (int j = 0; j < map.GetLength(1); j++)
             {
+                Cell.Type cell;
                 if (map[i, j] == 1)
-                    result[i, j] = Cell.Type.Floor;
+                    cell = Cell.Type.Floor;
                 else if (corridorMap[i, j] == 1)
-                    result[i, j] = Cell.Type.Corridor;
+                    cell = Cell.Type.Corridor;
                 else
-                    result[i, j] = Cell.Type.Wall;
+                    cell = Cell.Type.Wall;
+
+                result[i + outputPad, j + outputPad] = cell;
             }
         }
         return result;
