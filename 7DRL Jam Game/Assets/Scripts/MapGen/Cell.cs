@@ -7,7 +7,8 @@ public class Cell
     public enum Type
     {
         Wall,
-        Floor
+        Floor,
+        Corridor
     }
 
     public static Dictionary<Type, char> printChars = new Dictionary<Type, char>
