@@ -19,6 +19,7 @@ public class TilemapGen : MonoBehaviour
         tileMap = GetComponentInChildren<Tilemap>();
 
         SetupTilemap();    
+        tileMap.RefreshAllTiles();
     }
 
 
@@ -30,6 +31,7 @@ public class TilemapGen : MonoBehaviour
             Debug.Log("reset");
             tileMap.ClearAllTiles();
             SetupTilemap();
+            tileMap.RefreshAllTiles();
         }
     }
 
