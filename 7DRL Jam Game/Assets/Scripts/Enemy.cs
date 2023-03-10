@@ -17,11 +17,14 @@ public class Enemy : MonoBehaviour
     private bool attacking = false;
     Animator animator;
 
+    private Vector3 baseScale;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         pathfinding = GetComponent<EnemyPathfinding>();
+        baseScale = transform.localScale;
     }
     // Update is called once per frame
     void Update()
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) >= minDistPlayer)
             {
                 Vector3 newScale = transform.localScale;
-                newScale.x = transform.position.x > player.transform.position.x ? -1 : 1 ;
+                newScale.x = transform.position.x > player.transform.position.x ? -baseScale.x : baseScale.x ;
                 transform.localScale = newScale;
                 //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             }
