@@ -305,7 +305,6 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: 80b62833555cf2748857bbc81a2fcf46, type: 2}
   wallTopsTile: {fileID: 11400000, guid: a7f6f96429f5b8a4188154ee3f152506, type: 2}
   wallPad: 25
-  generator: {fileID: 323999967}
   navManager: {fileID: 1397477333}
 --- !u!1 &387946979
 GameObject:
@@ -17935,6 +17934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1485531235}
   - component: {fileID: 1485531236}
+  - component: {fileID: 1485531237}
   m_Layer: 0
   m_Name: Background Music
   m_TagString: Untagged
@@ -17993,6 +17993,29 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &1485531237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485531233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 1485531236}
+    Params:
+    - Name: Threat Level
+      Value: 0
+    - Name: Tense
+      Value: 0
+    - Name: Progress
+      Value: 0
+  TriggerEvent: 0
 --- !u!1 &1610482471
 GameObject:
   m_ObjectHideFlags: 0
