@@ -16,6 +16,8 @@ public class TilemapGen : MonoBehaviour
     [SerializeField] private TileBase wallTile;
     [SerializeField] private TileBase wallTopsTile;
 
+    [SerializeField] private int wallPad = 25;
+
     [SerializeField] private Component generator;
     [SerializeField] private NavMeshManager navManager;
 
@@ -44,6 +46,11 @@ public class TilemapGen : MonoBehaviour
         wallTilemap.ClearAllTiles();
         wallTopsTilemap.ClearAllTiles();
 
+        FillWalls(-wallPad, -wallPad, map.GetLength(0)+wallPad, 0);
+        FillWalls(-wallPad, map.GetLength(0), map.GetLength(0)+wallPad, map.GetLength(1)+wallPad);
+        FillWalls(-wallPad, 0, 0, map.GetLength(1));
+        FillWalls(map.GetLength(0), 0, map.GetLength(0)+wallPad, map.GetLength(1));
+
         for (int i = 0; i < map.GetLength(0); i++)
         {
             for (int j = 0; j < map.GetLength(1); j++)
@@ -67,4 +74,16 @@ public class TilemapGen : MonoBehaviour
         navManager.updateNavMesh();
     }
 
+
+    void FillWalls(int x0, int y0, int x1, int y1)
+    {
+        for (int i = x0; i < x1; i++)
+        {
+            for (int j = y0; j < y1; j++)
+            {
+                wallTilemap.SetTile(new Vector3Int(i, j, 0), wallTile);
+                wallTopsTilemap.SetTile(new Vector3Int(i, j, 0), wallTopsTile);
+            }
+        }
+    }
 }

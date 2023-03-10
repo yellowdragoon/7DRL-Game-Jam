@@ -9,9 +9,6 @@ public class Rooms : MapGen
     [SerializeField] private int width = 100;
     [SerializeField] private int height = 100;
 
-    [SerializeField] private int outputPad = 20;
-
-
     [SerializeField] private int roomPad = 1;
 
     [SerializeField] private int minRoomWidth = 9;
@@ -24,6 +21,8 @@ public class Rooms : MapGen
     [SerializeField] private double splitOrientationForceThreshold = 1.25;
     [SerializeField] private double horizontalChance = 0.50;
 
+    public List<Node> leaves;
+
 
     public override Cell.Type[,] Generate()
     {
@@ -33,12 +32,13 @@ public class Rooms : MapGen
         Fill(map, 0);
         Fill(corridorMap, 0);
 
+        leaves = new List<Node>();
+
         Node root = new Node(0, 0, width, height);
         Split(root);
         BuildRoom(map, corridorMap, root);
 
-
-        var result = new Cell.Type[width + 2 * outputPad, height + 2 * outputPad]; // defaults to all walls
+        var result = new Cell.Type[width, height]; // defaults to all walls
         for (int i = 0; i < map.GetLength(0); i++)
         {
             for (int j = 0; j < map.GetLength(1); j++)
@@ -51,16 +51,14 @@ public class Rooms : MapGen
                 else
                     cell = Cell.Type.Wall;
 
-                result[i + outputPad, j + outputPad] = cell;
+                result[i, j] = cell;
             }
         }
         return result;
     }
 
 
-    // can maybe expose this to allow for generating enemies or such
-    // and/or have a List<Node> of all nodes
-    private class Node
+    public class Node
     {
         public Node left;
         public Node right;
@@ -130,6 +128,7 @@ public class Rooms : MapGen
 
             root.room = new RectInt(x, y, w, h);
             Fill(map, 1, x, y, x + w, y + h);
+            leaves.Add(root);
         }
     }
 
