@@ -18,13 +18,14 @@ public class TilemapGen : MonoBehaviour
 
     [SerializeField] private int wallPad = 25;
 
-    [SerializeField] private Component generator;
     [SerializeField] private NavMeshManager navManager;
+
+    private Rooms roomGenerator = new Rooms();
 
     // Start is called before the first frame update
     void Start()
     {
-        SetupTilemaps();
+        SetupRooms();
     }
 
 
@@ -34,14 +35,24 @@ public class TilemapGen : MonoBehaviour
         if (Input.GetButtonDown("Debug Reset")) // left alt key
         {
             //Debug.Log("reset");
-            SetupTilemaps();
+            SetupRooms();
         }
     }
 
-    private void SetupTilemaps()
+    private void SetupRooms()
     {
-        var map = ((MapGen)generator).Generate();
+        var map = roomGenerator.Generate();
 
+        // Place the player at a starting point
+        // TODO graph traversal to find starting point + end point
+        Rooms.Node startLeaf = roomGenerator.leaves[Random.Range(0, roomGenerator.leaves.Count-1)];
+        var startCoords = floorTilemap.CellToLocalInterpolated(startLeaf.room.center);
+        var player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = startCoords;
+
+        // Generate things like enemies here
+
+        // Tilemaps
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
         wallTopsTilemap.ClearAllTiles();
