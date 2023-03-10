@@ -263,7 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 100
   height: 100
-  outputPad: 20
   roomPad: 1
   minRoomWidth: 9
   minRoomHeight: 9
@@ -305,6 +304,7 @@ MonoBehaviour:
   wallTopsTilemap: {fileID: 1291567506}
   wallTile: {fileID: 11400000, guid: 80b62833555cf2748857bbc81a2fcf46, type: 2}
   wallTopsTile: {fileID: 11400000, guid: a7f6f96429f5b8a4188154ee3f152506, type: 2}
+  wallPad: 25
   generator: {fileID: 323999967}
   navManager: {fileID: 1397477333}
 --- !u!1 &387946979

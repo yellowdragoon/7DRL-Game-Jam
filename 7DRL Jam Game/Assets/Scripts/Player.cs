@@ -42,7 +42,12 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject orb = findClosestOrb();
-            if(orb != null) orb.GetComponent<Orb>().releaseOrb();
+			
+            if(orb != null) 
+			{
+				animator.SetTrigger("attacking");
+				orb.GetComponent<Orb>().releaseOrb();
+			}
         }
     }
 

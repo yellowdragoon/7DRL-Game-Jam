@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b398aa08e4609b2409e3f585c0a2c0be
+guid: c4fce77fdc3c3ff43b6c283c9f1b85bc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mage-walk_0
+      name: mage-attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06ae6fcb8e2925a469f89bd39db21f62
-      internalID: 809387839
+      spriteID: 96b516fe5d4f433438b09ffacf195280
+      internalID: -1703793445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage-walk_1
+      name: mage-attack_1
       rect:
         serializedVersion: 2
         x: 60
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58dd86a2d89ef4f40819884f7c3d435d
-      internalID: -785059861
+      spriteID: 4285be5f9f24d2241b980d7d3b0b9ea6
+      internalID: -1847433813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage-walk_2
+      name: mage-attack_2
       rect:
         serializedVersion: 2
         x: 120
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 477d2fb563ed3a449a13fad46970dbca
-      internalID: -491999439
+      spriteID: 7d8c1831686d067448f01e5f34db13ae
+      internalID: 392086634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage-walk_3
+      name: mage-attack_3
       rect:
         serializedVersion: 2
         x: 180
@@ -182,8 +182,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d336e583d0f56944db56229b26ad1645
-      internalID: -1848625145
+      spriteID: 7b9483b2fad5e0148a180664cdebeee8
+      internalID: -858088880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage-attack_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c85817ab4fb9049ba7a036a5930400
+      internalID: 518137327
       vertices: []
       indices: 
       edges: []
@@ -199,10 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mage-walk_0: 809387839
-      mage-walk_1: -785059861
-      mage-walk_2: -491999439
-      mage-walk_3: -1848625145
+      mage-attack_0: -1703793445
+      mage-attack_1: -1847433813
+      mage-attack_2: 392086634
+      mage-attack_3: -858088880
+      mage-attack_4: 518137327
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
