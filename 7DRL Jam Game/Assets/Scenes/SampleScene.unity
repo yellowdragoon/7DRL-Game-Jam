@@ -306,6 +306,7 @@ MonoBehaviour:
   wallTopsTile: {fileID: 11400000, guid: a7f6f96429f5b8a4188154ee3f152506, type: 2}
   wallPad: 25
   navManager: {fileID: 1397477333}
+  spawner: {fileID: 1302342473}
 --- !u!1 &387946979
 GameObject:
   m_ObjectHideFlags: 0
@@ -17831,6 +17832,52 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1302342472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302342474}
+  - component: {fileID: 1302342473}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1302342473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302342472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4685b8bdb25ada443a1ab9333996fc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wolfPrefab: {fileID: 8071006015398881082, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
+  ratPrefab: {fileID: 7187215834764034260, guid: ed491974cc710fe4884ba78bb0e7b879, type: 3}
+--- !u!4 &1302342474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302342472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397477329
 GameObject:
   m_ObjectHideFlags: 0
@@ -18478,6 +18525,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 476924292}
+    - target: {fileID: 8071006014645799835, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8071006015398881082, guid: 16516c9b9541c2543936ba8843e40349, type: 3}
       propertyPath: m_Name
       value: Enemy

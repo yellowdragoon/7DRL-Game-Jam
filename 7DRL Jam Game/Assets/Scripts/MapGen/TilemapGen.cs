@@ -19,6 +19,7 @@ public class TilemapGen : MonoBehaviour
     [SerializeField] private int wallPad = 25;
 
     [SerializeField] private NavMeshManager navManager;
+    [SerializeField] private EnemySpawner spawner;
 
     private Rooms roomGenerator = new Rooms();
 
@@ -51,6 +52,17 @@ public class TilemapGen : MonoBehaviour
         player.transform.position = startCoords;
 
         // Generate things like enemies here
+        for (int i = 0; i < roomGenerator.leaves.Count; i++)
+        {
+            Rooms.Node currentLeaf = roomGenerator.leaves[i];
+            int numEnemies = Random.Range(0, 5);
+            for (int j = 0; j < numEnemies+1; j++)
+            {
+                Vector3 position = new Vector3(Random.Range(currentLeaf.x + 1, currentLeaf.x + currentLeaf.w - 1), Random.Range(currentLeaf.y + 1, currentLeaf.y + currentLeaf.h - 1), 0);
+                spawner.spawnEnemy(position);
+            }
+
+        }
 
         // Tilemaps
         floorTilemap.ClearAllTiles();
