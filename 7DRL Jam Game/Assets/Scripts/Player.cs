@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
             if(orb != null) 
 			{
 				animator.SetTrigger("attacking");
-				orb.GetComponent<Orb>().releaseOrb();
+                orb.GetComponentInParent<OrbSlot>().releaseOrb();
 			}
         }
     }

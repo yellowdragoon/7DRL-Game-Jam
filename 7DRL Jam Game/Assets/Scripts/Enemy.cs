@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public int damageDealt = 10;
     public float minDistPlayer = 0.1f;
     public float knockBackDealt = 30.0f;
-    public float aggroRange = 20.0f;
+    public float aggroRange = 10.0f;
     GameObject player;
     EnemyPathfinding pathfinding;
 

@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 739641099
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 389641447, guid: 47f3d78fb7bec4e45b2f1891fc88d4da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -104,9 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   moveSpeed: 5
-  damageDealt: 10
+  damageDealt: 5
   minDistPlayer: 0.1
-  knockBackDealt: 25
+  knockBackDealt: 100
   aggroRange: 20
 --- !u!61 &7187215834764034256
 BoxCollider2D:
@@ -200,11 +200,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.15
-  m_Speed: 10
+  m_Speed: 8
   m_Acceleration: 200
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 300
+  m_StoppingDistance: 0.28
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

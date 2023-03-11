@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  orbChild: {fileID: 7403479841767851902, guid: 789890997d3d9484493422164cf5e9ed, type: 3}
+  orbPrefab: {fileID: 7403479841767851902, guid: 789890997d3d9484493422164cf5e9ed, type: 3}
   rotateSpeed: 0.3
   xRadius: 1.2
   yRadius: 0.8

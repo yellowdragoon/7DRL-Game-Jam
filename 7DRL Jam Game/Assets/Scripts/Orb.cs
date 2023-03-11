@@ -34,22 +34,25 @@ public class Orb : MonoBehaviour
     }
 
 
-    public void releaseOrb()
+
+    public void fire()
     {
+        Debug.Log("Fired");
         orbReleased = true;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0.0f;
         transform.rotation = Quaternion.identity;
         moveDir = new Vector3(mousePos.x - transform.position.x, mousePos.y - transform.position.y, 0.0f).normalized;
 
-     
         transform.SetParent(null); // Detach from the orbslot
+        Debug.Log(transform.position);
+        Debug.Log(transform.parent);
         StartCoroutine(orbLifeTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OrbCollision!");
+        //Debug.Log("OrbCollision!");
         if(orbReleased && collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(orbDamage);
@@ -59,8 +62,7 @@ public class Orb : MonoBehaviour
 
     private void dissipateOrb()
     {
-        StartCoroutine(orbSlotParent.GetComponent<OrbSlot>().regenOrb(gameObject));
-        //gameObject.SetActive(false);
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
+
 }

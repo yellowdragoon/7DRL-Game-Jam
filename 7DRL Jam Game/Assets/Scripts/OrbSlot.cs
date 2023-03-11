@@ -5,7 +5,9 @@ using UnityEngine;
 public class OrbSlot : MonoBehaviour
 {
     public GameObject player;
-    public GameObject orbChild;
+    [SerializeField] private GameObject orbPrefab;
+    private GameObject orbChild;
+
     public float rotateSpeed = 10f;
     private float currentRotation = 0.0f;
     [SerializeField] private float xRadius = 3.0f;
@@ -15,6 +17,7 @@ public class OrbSlot : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        orbChild = GetComponentInChildren<Orb>().gameObject;
         //currentRotation = Vector2.Angle(player.transform.position, transform.position);
     }
 
@@ -32,15 +35,20 @@ public class OrbSlot : MonoBehaviour
         currentRotation = rot;
     }
 
-    public IEnumerator regenOrb(GameObject oldOrb)
+    public IEnumerator regenOrb()
     {
+        Debug.Log(GetComponentsInChildren<Orb>().Length);
         yield return new WaitForSeconds(2.0f);
-        GameObject newOrb = Instantiate(orbChild);
+        GameObject newOrb = Instantiate(orbPrefab);
         newOrb.transform.SetParent(transform);
         newOrb.transform.SetLocalPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
-
-        newOrb.transform.localScale = orbChild.transform.localScale;
+        newOrb.transform.localScale = orbPrefab.transform.localScale;
+        orbChild = newOrb;
         Debug.Log("Orb regened!");
-        Destroy(oldOrb);
+    }
+
+    public void releaseOrb(){
+        orbChild.GetComponent<Orb>().fire();
+        StartCoroutine(regenOrb());
     }
 }
