@@ -106,7 +106,7 @@ MonoBehaviour:
   moveSpeed: 5
   damageDealt: 5
   minDistPlayer: 0.1
-  knockBackDealt: 100
+  knockBackDealt: 20
   aggroRange: 20
 --- !u!61 &7187215834764034256
 BoxCollider2D:
