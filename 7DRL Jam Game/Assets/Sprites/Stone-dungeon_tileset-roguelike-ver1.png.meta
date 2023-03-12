@@ -974,7 +974,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1003,6 +1003,27 @@ TextureImporter:
       bones: []
       spriteID: 8c8f0c6594095b54da84f8894e13781e
       internalID: 1346509860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone-dungeon_tileset-roguelike-ver1_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868922fb76206f445ab535afef1ce3d8
+      internalID: 351123824
       vertices: []
       indices: 
       edges: []
@@ -1056,6 +1077,7 @@ TextureImporter:
       Stone-dungeon_tileset-roguelike-ver1_40: 1641792950
       Stone-dungeon_tileset-roguelike-ver1_41: -1269824688
       Stone-dungeon_tileset-roguelike-ver1_42: 1346509860
+      Stone-dungeon_tileset-roguelike-ver1_43: 351123824
       Stone-dungeon_tileset-roguelike-ver1_5: -1521050851
       Stone-dungeon_tileset-roguelike-ver1_6: 1242229513
       Stone-dungeon_tileset-roguelike-ver1_7: 657017240
