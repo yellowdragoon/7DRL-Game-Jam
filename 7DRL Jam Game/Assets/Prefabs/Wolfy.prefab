@@ -107,7 +107,9 @@ MonoBehaviour:
   damageDealt: 10
   minDistPlayer: 0.1
   knockBackDealt: 25
-  aggroRange: 20
+  aggroRange: 14
+  aggroSoundFMODPath: event:/Sounds/Wolf Bark
+  deathSoundFMODPath: event:/Sounds/Wolf Death
 --- !u!61 &8071006015398881086
 BoxCollider2D:
   m_ObjectHideFlags: 0

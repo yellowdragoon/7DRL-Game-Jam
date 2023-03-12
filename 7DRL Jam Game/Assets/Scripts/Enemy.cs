@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float minDistPlayer = 0.1f;
     public float knockBackDealt = 30.0f;
     public float aggroRange = 10.0f;
+    private bool aggroed = false;
     GameObject player;
     EnemyPathfinding pathfinding;
 
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour
     Animator animator;
 
     private Vector3 baseScale;
+    [SerializeField] private string aggroSoundFMODPath;
+    [SerializeField] private string deathSoundFMODPath;
 
 
     private void Start()
@@ -50,6 +53,11 @@ public class Enemy : MonoBehaviour
         if(Vector2.Distance(player.transform.position, transform.position) < aggroRange)
         {
             pathfinding.gainAggro();
+            if (!aggroed)
+            {
+                aggroed = true;
+                FMODUnity.RuntimeManager.PlayOneShot(aggroSoundFMODPath);
+            }
         }
     }
 
@@ -80,6 +88,7 @@ public class Enemy : MonoBehaviour
     private void die()
     {
         Debug.Log("Enemy dead!");
+        FMODUnity.RuntimeManager.PlayOneShot(deathSoundFMODPath);
         Destroy(gameObject);
     }
 

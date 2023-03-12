@@ -45,8 +45,9 @@ public class Orb : MonoBehaviour
         moveDir = new Vector3(mousePos.x - transform.position.x, mousePos.y - transform.position.y, 0.0f).normalized;
 
         transform.SetParent(null); // Detach from the orbslot
-        Debug.Log(transform.position);
-        Debug.Log(transform.parent);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Orb Fire");
+        //Debug.Log(transform.position);
+        //Debug.Log(transform.parent);
         StartCoroutine(orbLifeTime());
     }
 
@@ -56,6 +57,11 @@ public class Orb : MonoBehaviour
         if(orbReleased && collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(orbDamage);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Orb Impact");
+            dissipateOrb();
+        }
+        if(orbReleased && collision.gameObject.CompareTag("WallTilemap"))
+        {
             dissipateOrb();
         }
     }

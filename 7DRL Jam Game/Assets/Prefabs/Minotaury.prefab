@@ -108,7 +108,9 @@ MonoBehaviour:
   damageDealt: 20
   minDistPlayer: 0.1
   knockBackDealt: 70
-  aggroRange: 15
+  aggroRange: 10
+  aggroSoundFMODPath: event:/Sounds/Minotaur Roar
+  deathSoundFMODPath: event:/Sounds/Minotaur Death
 --- !u!61 &21249490075321248
 BoxCollider2D:
   m_ObjectHideFlags: 0
