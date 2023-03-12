@@ -21,6 +21,8 @@ public class TilemapGen : MonoBehaviour
     [SerializeField] private NavMeshManager navManager;
     [SerializeField] private EnemySpawner spawner;
 
+    [SerializeField] private float maxEnemyDensity = 0.01f;
+
     private Rooms roomGenerator = new Rooms();
 
     // Start is called before the first frame update
@@ -36,6 +38,10 @@ public class TilemapGen : MonoBehaviour
         if (Input.GetButtonDown("Debug Reset")) // left alt key
         {
             //Debug.Log("reset");
+            foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(enemy); // should this be done in SetupRooms? then SetupRooms is like a nice restart method
+            }
             SetupRooms();
         }
     }
@@ -44,17 +50,30 @@ public class TilemapGen : MonoBehaviour
     {
         var map = roomGenerator.Generate();
 
+        Rooms.Node randomLeaf = roomGenerator.leaves[Random.Range(0, roomGenerator.leaves.Count-1)];
+        Rooms.Node startLeaf = roomGenerator.GetFurthestLeaf(randomLeaf);
+        Rooms.Node endLeaf = roomGenerator.GetFurthestLeaf(startLeaf); // if ending room needs to be boss, can instead look for largest room then find start from there?
+
         // Place the player at a starting point
-        // TODO graph traversal to find starting point + end point
-        Rooms.Node startLeaf = roomGenerator.leaves[Random.Range(0, roomGenerator.leaves.Count-1)];
         var startCoords = floorTilemap.CellToLocalInterpolated(startLeaf.room.center);
         var player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = startCoords;
 
-        // Generate things like enemies here
-        for (int i = 0; i < roomGenerator.leaves.Count; i++)
+        // Place the end room [just change tiles for now]
+        var r = endLeaf.room;
+        for (int i=r.x; i<r.x+r.width; i++)
         {
-            Rooms.Node currentLeaf = roomGenerator.leaves[i];
+            for (int j=r.y; j<r.y+r.height; j++)
+            {
+                map[i, j] = Cell.Type.Corridor;
+            }
+        }
+
+        // Generate things like enemies here
+        foreach (var currentLeaf in roomGenerator.leaves)
+        {
+            //int roomSize = currentLeaf.room.width * currentLeaf.room.height;
+            //int numEnemies = Random.Range(0, Mathf.CeilToInt(roomSize * maxEnemyDensity));
             int numEnemies = Random.Range(0, 5);
             for (int j = 0; j < numEnemies+1; j++)
             {

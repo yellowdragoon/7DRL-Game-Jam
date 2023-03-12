@@ -193,7 +193,30 @@ public class Rooms : MapGen
         if (Vector2Int.Distance(root.left.center, other.center) < Vector2Int.Distance(root.right.center, other.center))
             return GetCloseLeaf(root.left, other);
         return GetCloseLeaf(root.right, other);
-    } 
+    }
+
+    public Node GetFurthestLeaf(Node start)
+    {
+        var q = new Queue<Node>();
+        var visited = new HashSet<Node>();
+        q.Enqueue(start);
+        Node last = start;
+
+        while (q.Count > 0)
+        {
+            last = q.Dequeue();
+            foreach (Node nei in last.connections)
+            {
+                if (!visited.Contains(nei))
+                {
+                    visited.Add(nei);
+                    q.Enqueue(nei);
+                }
+            }
+        }
+
+        return last;
+    }
 
     void Fill(int[,] m, int val)
     {
