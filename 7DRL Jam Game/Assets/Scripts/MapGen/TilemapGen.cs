@@ -74,14 +74,18 @@ public class TilemapGen : MonoBehaviour
         {
             //int roomSize = currentLeaf.room.width * currentLeaf.room.height;
             //int numEnemies = Random.Range(0, Mathf.CeilToInt(roomSize * maxEnemyDensity));
-            int numEnemies = Random.Range(0, 5);
-            for (int j = 0; j < numEnemies+1; j++)
+            if(currentLeaf != startLeaf && currentLeaf != endLeaf)
             {
-                Vector3 position = new Vector3(Random.Range(currentLeaf.x + 1, currentLeaf.x + currentLeaf.w - 1), Random.Range(currentLeaf.y + 1, currentLeaf.y + currentLeaf.h - 1), 0);
-                spawner.spawnEnemy(position);
+                int numEnemies = Random.Range(0, 5);
+                for (int j = 0; j < numEnemies + 1; j++)
+                {
+                    Vector3 position = new Vector3(Random.Range(currentLeaf.x + 1, currentLeaf.x + currentLeaf.w - 1), Random.Range(currentLeaf.y + 1, currentLeaf.y + currentLeaf.h - 1), 0);
+                    spawner.spawnEnemy(position);
+                }
             }
-
         }
+
+        spawner.spawnBossRoom(endLeaf.room);
 
         // Tilemaps
         floorTilemap.ClearAllTiles();

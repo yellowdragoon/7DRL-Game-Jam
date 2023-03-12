@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 21249489737887551}
   - component: {fileID: 21249489737887492}
   - component: {fileID: 21249489737887493}
+  - component: {fileID: 4535604738164071782}
   m_Layer: 0
   m_Name: Minotaury
   m_TagString: Enemy
@@ -106,7 +107,7 @@ MonoBehaviour:
   moveSpeed: 4
   damageDealt: 20
   minDistPlayer: 0.1
-  knockBackDealt: 40
+  knockBackDealt: 70
   aggroRange: 15
 --- !u!61 &21249490075321248
 BoxCollider2D:
@@ -212,3 +213,15 @@ NavMeshAgent:
   m_BaseOffset: 0.39
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4535604738164071782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21249490075321252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba5000f2a1f62446af4b649d81c9d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
