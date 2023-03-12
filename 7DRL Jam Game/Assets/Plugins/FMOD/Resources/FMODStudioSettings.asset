@@ -426,8 +426,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FMODAssets/Background Music/BackgroundMusic.fspro
-  sourceBankPath: FMODAssets/Background Music/Build
+  sourceProjectPath: FMODAssets/Audio/Audio.fspro
+  sourceBankPath: FMODAssets/Audio/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -452,6 +452,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Music
+  - Sounds
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

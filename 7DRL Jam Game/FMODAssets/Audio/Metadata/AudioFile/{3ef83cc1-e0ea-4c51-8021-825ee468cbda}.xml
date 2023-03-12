@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3ef83cc1-e0ea-4c51-8021-825ee468cbda}">
+		<property name="color">
+			<value>Yellow Light 2</value>
+		</property>
+		<property name="assetPath">
+			<value>wolf_bark.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.55725000000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3901549f-b226-49ec-8418-15f6476b5c98}</destination>
+		</relationship>
+	</object>
+</objects>
