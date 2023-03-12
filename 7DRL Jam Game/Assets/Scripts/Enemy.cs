@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 
     private Vector3 baseScale;
 
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

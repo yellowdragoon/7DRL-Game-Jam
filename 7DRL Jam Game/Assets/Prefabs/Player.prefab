@@ -155,6 +155,7 @@ MonoBehaviour:
   health: 100
   orbSlotPrefab: {fileID: 4562738697569985584, guid: 2df3c1a399393054aaf8a26406fe14f5, type: 3}
   healthBar: {fileID: 0}
+  deathSceneString: GameOver
 --- !u!50 &476924295
 Rigidbody2D:
   serializedVersion: 4

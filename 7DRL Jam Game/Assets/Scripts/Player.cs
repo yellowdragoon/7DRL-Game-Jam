@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public GameObject orbSlotPrefab;
     private Animator animator;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private string deathSceneString;
 
     private bool facingRight = true;
 
@@ -106,6 +108,7 @@ public class Player : MonoBehaviour
     private void die()
     {
         GameObject.Destroy(this.gameObject);
+        SceneManager.LoadScene(deathSceneString);
     }
 
 
