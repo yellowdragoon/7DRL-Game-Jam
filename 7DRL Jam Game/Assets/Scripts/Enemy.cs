@@ -50,15 +50,19 @@ public class Enemy : MonoBehaviour
 
     private void checkAggro()
     {
-        if(Vector2.Distance(player.transform.position, transform.position) < aggroRange)
+        if(player != null)
         {
-            pathfinding.gainAggro();
-            if (!aggroed)
+            if (Vector2.Distance(player.transform.position, transform.position) < aggroRange)
             {
-                aggroed = true;
-                FMODUnity.RuntimeManager.PlayOneShot(aggroSoundFMODPath);
+                pathfinding.gainAggro();
+                if (!aggroed)
+                {
+                    aggroed = true;
+                    FMODUnity.RuntimeManager.PlayOneShot(aggroSoundFMODPath);
+                }
             }
         }
+
     }
 
 

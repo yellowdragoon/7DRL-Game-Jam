@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MinotaurAI : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class MinotaurAI : MonoBehaviour
         if (pathFinding.aggro)
         {
             musicManager.startBossMusic();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(enemyScript.health <= 0)
+        {
+            SceneManager.LoadScene("WinScreen");
         }
     }
 }

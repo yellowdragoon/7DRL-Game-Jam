@@ -35,6 +35,7 @@ public class TilemapGen : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetButtonDown("Debug Reset")) // left alt key
         {
             //Debug.Log("reset");
@@ -44,6 +45,7 @@ public class TilemapGen : MonoBehaviour
             }
             SetupRooms();
         }
+        */
     }
 
     private void SetupRooms()
