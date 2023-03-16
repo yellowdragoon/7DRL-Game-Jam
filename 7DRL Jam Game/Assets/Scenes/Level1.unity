@@ -19180,7 +19180,7 @@ MonoBehaviour:
       Data2: 1074223588
       Data3: -164725599
       Data4: 1735520047
-    Path: event:/Music/Dungeon Loopable
+    Path: event:/Music/Dungeon
   Event: 
   PlayEvent: 1
   StopEvent: 2

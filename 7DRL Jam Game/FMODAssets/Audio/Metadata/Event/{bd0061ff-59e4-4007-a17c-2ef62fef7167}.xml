@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{bd0061ff-59e4-4007-a17c-2ef62fef7167}">
 		<property name="name">
-			<value>Dungeon Loopable</value>
+			<value>Dungeon</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
