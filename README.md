@@ -1,5 +1,7 @@
 # 7DRL-Game-Jam
-Repo for our team's project for the 7DRL Jam using Unity Engine
+Repo for our team's project for the [7DRL](https://7drl.com/) Jam using Unity Engine.
+
+Play the game [here](https://yellowdragoon.itch.io/untitled-orb-game)!
 
 ## Music
 These features have been updated since the last commits, so be sure to have another read through before you begin to use them.
